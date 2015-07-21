@@ -17,12 +17,12 @@
 CLLocationManagerDelegate
 >
 
-@property (nonatomic, assign) UIBackgroundTaskIdentifier taskIdentifier;
-@property (nonatomic, assign) BOOL deferring;
-
 @property (nonatomic, assign) CGFloat minSpeed;
 @property (nonatomic, assign) CGFloat minFilter;
 @property (nonatomic, assign) CGFloat minInteval;
+
+//@property (nonatomic, assign) UIBackgroundTaskIdentifier taskIdentifier;
+//@property (nonatomic, assign) BOOL deferring;
 
 @end
 
@@ -52,30 +52,8 @@ CLLocationManagerDelegate
         self.delegate = self;
         self.distanceFilter  = self.minFilter;
         self.desiredAccuracy = kCLLocationAccuracyBest;
-        
-        self.datas = [@[] mutableCopy];
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(applicationEnterBackground)
-                                                     name:UIApplicationDidEnterBackgroundNotification
-                                                   object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(applicationEnterForeground)
-                                                     name:UIApplicationWillEnterForegroundNotification
-                                                   object:nil];
     }
     return self;
-}
-
-
-- (void)applicationEnterBackground
-{
-    NSLog(@"applicationEnterBackground");
-}
-
-- (void)applicationEnterForeground
-{
-    NSLog(@"applicationEnterForeground");
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
@@ -85,7 +63,6 @@ CLLocationManagerDelegate
     NSLog(@"%@",location);
     
     [self adjustAccuracy:location];
-    
     [self uploadLocation:location];
 }
 
@@ -170,20 +147,21 @@ CLLocationManagerDelegate
     
 }
 
-- (void)beingBackgroundUpdateTask
-{
-    self.taskIdentifier = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
-        [self endBackgroundUpdateTask];
-    }];
-}
 
-- (void)endBackgroundUpdateTask
-{
-    if ( self.taskIdentifier != UIBackgroundTaskInvalid )
-    {
-        [[UIApplication sharedApplication] endBackgroundTask: self.taskIdentifier];
-        self.taskIdentifier = UIBackgroundTaskInvalid;
-    }
-}
+//- (void)beingBackgroundUpdateTask
+//{
+//    self.taskIdentifier = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
+//        [self endBackgroundUpdateTask];
+//    }];
+//}
+//
+//- (void)endBackgroundUpdateTask
+//{
+//    if ( self.taskIdentifier != UIBackgroundTaskInvalid )
+//    {
+//        [[UIApplication sharedApplication] endBackgroundTask: self.taskIdentifier];
+//        self.taskIdentifier = UIBackgroundTaskInvalid;
+//    }
+//}
 
 @end

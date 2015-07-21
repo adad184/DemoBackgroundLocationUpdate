@@ -11,8 +11,6 @@
 
 @interface MMLocationManager : CLLocationManager
 
-@property (nonatomic, strong) NSMutableArray *datas;
-
 + (instancetype)sharedManager;
 
 @end
