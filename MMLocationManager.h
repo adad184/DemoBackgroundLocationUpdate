@@ -8,9 +8,14 @@
 
 #import <Foundation/Foundation.h>
 @import CoreLocation;
+@import UIKit;
 
 @interface MMLocationManager : CLLocationManager
 
 + (instancetype)sharedManager;
+
+@property (nonatomic, assign) CGFloat minSpeed;
+@property (nonatomic, assign) CGFloat minFilter;
+@property (nonatomic, assign) CGFloat minInteval;
 
 @end

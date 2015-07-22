@@ -9,20 +9,13 @@
 #import "MMLocationManager.h"
 #import <Realm/Realm.h>
 #import "MMLoc.h"
-@import UIKit;
-@import CoreLocation;
 
 @interface MMLocationManager()
 <
 CLLocationManagerDelegate
 >
 
-@property (nonatomic, assign) CGFloat minSpeed;
-@property (nonatomic, assign) CGFloat minFilter;
-@property (nonatomic, assign) CGFloat minInteval;
-
 //@property (nonatomic, assign) UIBackgroundTaskIdentifier taskIdentifier;
-//@property (nonatomic, assign) BOOL deferring;
 
 @end
 
