@@ -36,6 +36,11 @@
         [[MMLocationManager sharedManager] requestAlwaysAuthorization];
     }
     
+    if ( [self respondsToSelector:@selector(allowsBackgroundLocationUpdates)])
+    {
+        [MMLocationManager sharedManager].allowsBackgroundLocationUpdates = YES;
+    }
+    
     [[MMLocationManager sharedManager] startUpdatingLocation];
 }
 
