@@ -62,7 +62,7 @@ CLLocationManagerDelegate
     
     NSLog(@"%@",location);
     
-    [self adjustAccuracy:location];
+    [self adjustDistanceFilter:location];
     [self uploadLocation:location];
 }
 
@@ -72,9 +72,9 @@ CLLocationManagerDelegate
  *  此时若速度变化超过10% 则更新当前的触发范围(这里限制是因为不能不停的设置distanceFilter,
  *  否则uploadLocation会不停被触发)
  */
-- (void)adjustAccuracy:(CLLocation*)location
+- (void)adjustDistanceFilter:(CLLocation*)location
 {
-    NSLog(@"adjust:%f",location.speed);
+//    NSLog(@"adjust:%f",location.speed);
     
     if ( location.speed < 0 )
     {
