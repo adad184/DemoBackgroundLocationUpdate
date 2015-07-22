@@ -76,15 +76,6 @@ CLLocationManagerDelegate
 {
 //    NSLog(@"adjust:%f",location.speed);
     
-    if ( location.speed < 0 )
-    {
-        if ( self.distanceFilter < self.minFilter )
-        {
-            self.distanceFilter = self.minFilter;
-        }
-        return;
-    }
-    
     if ( location.speed < self.minSpeed )
     {
         if ( fabs(self.distanceFilter-self.minFilter) > 0.1f )
