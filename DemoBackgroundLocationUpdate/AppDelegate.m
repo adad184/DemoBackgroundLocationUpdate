@@ -62,7 +62,7 @@
             [MMLocationManager sharedManager].allowsBackgroundLocationUpdates = YES;
         }
 
-        [[MMLocationManager sharedManager] startUpdatingLocation];
+        [[MMLocationManager sharedManager] startMonitoringSignificantLocationChanges];
     }
     
     return YES;
