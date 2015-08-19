@@ -52,15 +52,14 @@
             [realm addObject:loc];
         }];
         
-        if ( [[MMLocationManager sharedManager] respondsToSelector:@selector(requestAlwaysAuthorization)] )
-        {
-            [[MMLocationManager sharedManager] requestAlwaysAuthorization];
-        }
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
+        [[MMLocationManager sharedManager] requestAlwaysAuthorization];
+#endif
         
-        if ( [self respondsToSelector:@selector(allowsBackgroundLocationUpdates)])
-        {
-            [MMLocationManager sharedManager].allowsBackgroundLocationUpdates = YES;
-        }
+
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 90000
+        [[MMLocationManager sharedManager] setAllowsBackgroundLocationUpdates:YES];
+#endif
 
         [[MMLocationManager sharedManager] startMonitoringSignificantLocationChanges];
     }
